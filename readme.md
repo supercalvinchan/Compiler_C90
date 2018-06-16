@@ -1,5 +1,13 @@
 2017/2018 Compilers Coursework
 ==============================
+_The following coursework is what I have done during second term in my second year.
+
+_Bascially, There are two projects have included in this repo, one is translator and the other one is compiler.
+
+The requirement has shown below.
+
+_The checklist file has shown the functionalities of my compiler.
+
 
 Meta-comment
 ============
