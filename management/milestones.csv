@@ -1,0 +1,16 @@
+MilestoneID,             Dependencies, EstimatedEffort, Lead,  Completed, Description
+Learning,              ,5, cc6815   ,           ,Learning Bison and Flex and understanding ANSI C Parser
+Translator_skeleton,Learning,10, jdx16,  4a43e7a4785dabb4952f4cf4e1afb783ce5295ea,write a flex and parser can parse the simple C code
+Translator_AST, Learning;Translator_skeleton,10, jdx16, 64a135a9d6344537698f2a86ab668ca7f257b0d3, AST structure can translate required python
+Python, ,10, jdx16,   ,Learning python
+Update_to_while, Python,3, jdx16, e00e22865b9e2cb77d1c1a12435854117c936c3a,translator can translate some functionalities C into MIPS assembly
+Update_to_ARGUMENTLIST, Update_to_while,12, jdx16,2e28621a1a926af454bd67ef436987ee76ee9412,translator can translate some functionalities C into MIPS assembly
+Translator_final, Update_to_ARGUMENTLIST  ,20, jdx16, 26e6ccd02fc9ed95b5c62a378fbfb87dc1c0b179, final translator
+Compiler_skeleton, Learning,10, cc6815, 2c25f06b8be6d977ffb0f64f145f5d4354f45ed8, write a flex and parser can parse the simple C code
+MIPS,    ,10, cc6815,     ,Learning stack theory and MIPS
+Compiler_AST, MIPS,20, cc6815, b938232c652528ae0ce272a4a62d1f5a2935151f, AST structure can translate required Mips assembly
+Update_to_FUNCTIONCALL, Compiler_AST,25, cc6815, 3dff876b3784bf9eb5b6f8c3b8a35e4f635d2f4d,compiler can translate some functionalities C into MIPS assembly
+Update_to_ARRAY , Update_to_FUNCTIONCALL,10, cc6815, b3c4f6572c6190bd133abf4b5a5ded195b8415f4,compiler can translate some functionalities C into MIPS assembly
+Update_to_string_and_pointer , Update_to_ARRAY,10, cc6815, 36862d6550f17c8a0b13f37122e0c2a4e4b661f6,compiler can translate some functionalities C into MIPS assembly
+Update_to_STRUCT , Update_to_string_and_pointer,10, cc6815,  9b669a816d6797e88eff9431f3af56493c47c495,compiler can output MIPS assembly code and is debugged upto STRUCT
+Combine_translator_and_compiler, ALL,6, group, 920314acd520268ba3754d90eee7ebfb49baf36f, Combine two things to reach the requirement

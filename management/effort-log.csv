@@ -1,0 +1,13 @@
+startDate, endDate,Developers,Effort,Milestones
+2018-02-07, 2018-02-14, GROUP,9, Learning;Python;MIPS
+2018-02-07, 2018-02-11, cc6815,5, Compiler_skeleton
+2018-02-19, 2018-02-19, jdx16,5, Translator_skeleton
+2018-02-20, 2018-02-22, cc6815,8, Compiler_AST
+2018-02-22, 2018-03-15, cc6815,30, Update_to_FUNCTIONCALL
+2018-03-03, 2018-03-05, jdx16 ,12, Python;Update_to_while
+2018-03-10, 2018-03-13, jdx16,20, Update_to_ARGUMENTLIST
+2018-03-15, 2018-03-20, cc6815,20, Update_to_ARRAY
+2018-03-18, 2018-03-20, jdx16,10, Translator_final
+2018-03-20, 2018-03-20, cc6815,5, Update_to_string_and_pointer
+2018-03-21, 2018-03-23, cc6815,10, Update_to_STRUCT
+2018-03-24, 2018-03-24, GROUP,6, Combine_translator_and_compiler

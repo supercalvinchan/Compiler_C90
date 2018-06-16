@@ -1,0 +1,9 @@
+Week,    DateRange,          PlannedEffort,  ActualEffort,  OtherDeadlines
+4, 2018-01-09 - 2018-02-04,  Learning,  Learning,  Computing Network Coursework
+5, 2018-02-05 - 2018-02-11, Compiler_skeleton;MIPS;Compiler_AST, Compiler_skeleton;MIPS;Compiler_AST, Computing Network Coursework/Database Coursework
+6, 2018-02-12 - 2018-02-18, Learning, Learning, Database Coursework
+7, 2018-02-19 - 2018-02-25, Learning;Translator_skeleton, Learning;Translator_skeleton,
+8, 2018-02-26 - 2018-03-04,Translator_AST;Python,Translator_AST;Python, Database Coursework/ Maths coursework
+9, 2018-03-05 - 2018-03-11, Update_to_while;Update_to_ARRAY, Update_to_while;Update_to_ARRAY,Maths coursework
+10, 2018-03-12 - 2018-03-18, Update_to_ARGUMENTLIST;Update_to_string_and_pointer;Update_to_STRUCT, Update_to_ARGUMENTLIST;Update_to_string_and_pointer;Update_to_STRUCT,Maths coursework
+11, 2018-03-19 - 2018-03-27, Translator_final;Combine_translator_and_compiler, Translator_final;Combine_translator_and_compiler,

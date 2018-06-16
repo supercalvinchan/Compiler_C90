@@ -1,0 +1,172 @@
+Understanding Gain:
+
+1.Spend time learning compiler design, and we have the following gain and skeleton design:
+
+A program, which is a collection of source code, needs memory resources to execute instructions.
+So a runtime support system should be produced for takes care of memory allocation and deallocation while
+the program is being executed.
+
+Control stack and activation records:
+It is used to keep track of the live procedure activations, when a procedure is called, an activation record
+is pushed into the stack and as soon as the control returns to the caller function the activation record is popped.
+
+A procedure is in below:(we have found it on the Internet)
+
+        --------------                               ^
+        |argument n  |                               |  higher address
+incoming|            |                               |
+----->  |------------|<---------- frame pointer
+        |local       |
+        |variable    |
+        |------------|
+        |return      |
+        |address     |
+        |------------|
+outgoing|argument m  |
+----->  |            |
+        |------------|<---------- stack pointer
+        |            |
+        |            |
+        |------------|
+
+We have two scopes in our compiler design, one is "expression_scope" and the other one is "root_ctext". Above the function
+level, we push everything into "root_ctext", and below in to "expression_scope". When we meet a new scope(e.g. encounter {}),
+we push the current scope into the newest one.
+
+
+And below is the MIPS procedure call convention:
+
+|r0        Always 0 |        |r1        Reserved for assembler |
+|r2-r3     Stores result |      |r4-r7     Stores arguments |
+|r8-r15    Temporaries, not saved |  |r16-r23   Contents saved for later |
+|r24-r25   More temporaries not saved | |r26-r27   Reserved by OS |
+|r28       Global pointer | |r29        Stack pointer  sp |
+|r30       Frame pointer fp | |r31      Return address |
+
+
+For us, we just simplt use r2 and r3 for storing result, and r31 for returning address, r8 for tempory storage.
+
+
+2. Spend time leanrning flex and bison, we have the following gain:
+Flex and Bison files have three sections, which are divided by %%:
+
+1. "control" information
+2. actual token/grammar definitions
+3. C code to be copied verbatim to the output
+
+>Bison file know what the terminal types are, so we can use them in the Flex file:
+e.g.:
+"\="                  { yylval.string = new string("=");return EQUAL; }
+
+>Bison does not perform the action until it matches the complete rule
+
+>yydebug: which is a useful tool to help us see the parsing procedure, so we do not only simply get symply error but also the parsing.
+
+>makefile should look like this:
+.....
+
+src/maths_parser.tab.cpp src/maths_parser.tab.hpp : src/maths_parser.y
+	bison -v -d src/maths_parser.y -o src/maths_parser.tab.cpp
+
+src/maths_lexer.yy.cpp : src/maths_lexer.flex src/maths_parser.tab.hpp
+	flex -o src/maths_lexer.yy.cpp  src/maths_lexer.flex
+
+......
+
+3. Spend time learning python, we have the followin gain:
+
+The whole translation process from c to python can be divided into following stages:
+
+Parsing c code
+
+Building Abstract Syntax Tree
+
+Generate python code from AST
+
+The first two stages are done with the help from using flex and bison.
+Although the frontend in this project are different for the translator and compiler,
+both of them use part of the Yacc grammar for ANSI C standard, written by Jeff Lee.
+
+The translation from c to python, in some cases, are straight forward.
+C and Python share many "almost" identical operators and functionality (Some operators have different behaviour, discussed on later part). For example, logical operator, bitwise operator, and loops in C are also available in Python.
+Therefore for assignments like a = b + c, the expression in both languages are almost identical.
+
+The difference occurs at function definition, type-specifiers, representation of scope and many more. For example:
+
+C: int a; int b = 5;
+
+Python: a = 0
+
+b = 5
+
+Different from C, which is strongly-typed, Python does not need to assign a unique data type to a variable, nor declaration.
+
+That leads to the problem of handling shadowing.
+In C, if another variable with the same identifier is declared in inner scope, that variable "masks" the outer variable.
+In contrast, since Python does not have c-like declaration, to identify the scope of variable, it uses [global] and [nonlocal].
+
+Because standard C does not support defining a function within another function, only [global] is required to do the translation:
+
+Example:
+
+formative/f8.c:
+
+int x;
+
+int f(){
+
+x = x + 1;
+
+return x;
+
+` }
+
+formative/f8.py:
+
+x = 0;
+
+def f():
+
+global x
+
+x = x + 1
+
+return x
+
+There are some interesting difference in some of the operators.
+In most of time they behaves the same in C and Python, but not in some edge cases.
+
+Mod operator: %
+
+It gives remainder of the equation: 5%2 evaluates to 1.
+
+The difference happens when the operand is negative:
+
+C:
+
+-5%4 evaluates to -1
+
+Python:
+
+-5%4 evaluates to 3
+
+Both are correct, looks like Python's mod operator is designed to return value with the same sign as divisor.
+
+Logical and operator: &&
+
+C: 5&&3 evaluates to 1
+
+0 and 3 evaluates to 0
+
+Python:
+
+5&&3 evaluates to 3
+
+0 and 3 evaluates to 0
+
+The difference is:
+
+&& in C returns boolean value of that statement and it regards non-zeros as true, so the first statement evaluates to 1 and second to 0.
+
+and in Python has a different mechanism. It evaluates the first statement, if that is false(0), it returns 0.
+If that is true, it just pass the value from second expression. Therefore the return value is not always boolean, but depends on the second expression.

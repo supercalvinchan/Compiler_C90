@@ -1,0 +1,4 @@
+The tests in the test files are acknowledged from https://github.com/fexter-svk/C90Compiler-EIE2,
+becasue it is not accessed.
+
+The parsing and flexing grammar is acknowledged from https://www.lysator.liu.se/c/ANSI-C-grammar-y.html.
